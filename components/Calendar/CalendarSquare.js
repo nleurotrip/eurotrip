@@ -15,7 +15,9 @@ export default function CalendarSquare({day, date, active, location, icon}) {
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text>{date}</Text>
       </View>
-        <Image source={flags[location]} style={{marginLeft:'auto', marginRight:'auto', height: 20, maxWidth: 30, marginTop: 2}} />
+      <View style={{flex: 1}}>
+        <Image source={flags[location]} style={{marginLeft:'auto', marginRight:'auto', height: 25, width: 40, marginTop: 2}} />
+      </View>
     </View>
   )
 }
@@ -28,6 +30,6 @@ styles = StyleSheet.create({
         margin: 0,
         marginVertical: 1,
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'lightgrey'
     }
 });
