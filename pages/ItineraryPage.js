@@ -1,17 +1,21 @@
 import { Avatar } from '@rneui/themed';
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
+import useStyles from '../styles';
 
 const ItineraryPage = () => {
+    const styles = useStyles();
     return (
-        <SafeAreaView>
-            <Text>Itinerary coming soon!</Text>
-            <Avatar 
-                size={40}
-                rounded
-                title="NL"
-                containerStyle={{backgroundColor: 'blue'}}
-            />
+        <SafeAreaView style={styles.rootContainer}>
+            <View>
+                <Text style={{...styles.typography.header, color:'black'}}>Itinerary</Text>
+            </View>
+            <View>
+                {/* <Calendar /> */}
+            </View>
+            <View>
+                {/* <Accordion></Accordion> */}
+            </View>
         </SafeAreaView>
     );
 };

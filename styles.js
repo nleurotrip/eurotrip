@@ -6,6 +6,14 @@ const useStyles = makeStyles((theme) => ({
             flex: 1,
             margin: 0,
             padding: 0,
+        },
+        typography: {
+            header: {
+                fontSize: 40,
+                fontWeight: 'bold',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+            }
         }
     })
 );
