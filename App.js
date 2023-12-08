@@ -1,21 +1,14 @@
-
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import TempPage from './pages/Temp';
-import ItineraryPage from './pages/ItineraryPage';
-
-const Tab = createBottomTabNavigator();
+import Navigation from './Navigation';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-       <Tab.Screen name="Itinerary" component={ItineraryPage} />
-       <Tab.Screen name="Settings" component={TempPage} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      {/* //dux provider goes here */}
+      <Navigation />
+    </SafeAreaProvider>
   )
 };
 
