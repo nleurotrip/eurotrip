@@ -5,7 +5,7 @@ const theme = createTheme({
     lightColors: {
       primary: 'red',
       secondary: 'blue',
-      background: 'red',
+      background: 'lightgrey',
 
     },
     //force light mode
