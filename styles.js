@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.colors.background,
             flex: 1,
             margin: 0,
-            padding: 0,
+            padding: 5,
         },
         typography: {
             header: {

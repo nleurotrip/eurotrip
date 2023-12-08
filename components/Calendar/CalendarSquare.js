@@ -24,7 +24,7 @@ export default function CalendarSquare({day, date, active, location, icon}) {
 
 styles = StyleSheet.create({
     container: {
-        width: 48,
+        width: '14%',
         minHeight: 50,
         padding: 0,
         margin: 0,

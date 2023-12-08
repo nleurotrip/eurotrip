@@ -9,9 +9,6 @@ const ItineraryPage = () => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View>
-                <Text style={{...styles.typography.header, color:'black'}}>Itinerary</Text>
-            </View>
-            <View>
                 <Calendar />
             </View>
             <View>

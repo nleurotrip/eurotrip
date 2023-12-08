@@ -5,17 +5,15 @@ import calendarData from './itineraryData';
 const { weekOne, weekTwo, weekThree } = calendarData;
 export default function Calendar() {
   return (
-    <View style={styles.container}>
-      <View style={styles.calendarContainer}>
-        <View style={styles.rowContainer}>
-          { weekOne.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
-        </View>
-        <View style={styles.rowContainer}>
-          { weekTwo.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
-        </View>
-        <View style={styles.rowContainer}>
-          { weekThree.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
-        </View>
+    <View style={styles.calendarContainer}>
+      <View style={styles.rowContainer}>
+        { weekOne.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+      </View>
+      <View style={styles.rowContainer}>
+        { weekTwo.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+      </View>
+      <View style={styles.rowContainer}>
+        { weekThree.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
       </View>
     </View>
   )
@@ -30,14 +28,14 @@ styles = StyleSheet.create({
         marginVertical: 10,
     },
     calendarContainer: {
-        width: '100%',
-        minHeight: 150,
+        width: '95%',
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: 'white',
         borderRadius: 5,
-        padding: 10,
-        margin: 5
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        padding: 5
     },
     rowContainer: {
       flexDirection: 'row',
