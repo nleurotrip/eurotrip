@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View } from 'react-native';
 import useStyles from '../styles';
 
 import Calendar from '../components/Calendar/Calendar';
+import ItineraryAccordion from '../components/ItineraryAccordion/ItineraryAccordion';
 
 const ItineraryPage = () => {
     const styles = useStyles();
@@ -12,7 +13,7 @@ const ItineraryPage = () => {
                 <Calendar />
             </View>
             <View>
-                {/* <Accordion></Accordion> */}
+                <ItineraryAccordion />
             </View>
         </SafeAreaView>
     );
