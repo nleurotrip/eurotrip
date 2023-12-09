@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         marginVertical: 10, 
         borderWidth: 1, 
-        borderColor: 'lightgrey'
+        borderColor: 'lightgrey',
+        backgroundColor: 'white',
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     }
 })
