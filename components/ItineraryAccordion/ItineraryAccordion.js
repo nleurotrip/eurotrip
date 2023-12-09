@@ -78,6 +78,7 @@ export default function ItineraryAccordion() {
               }
               isExpanded={flightsExanded}
               onPress={() => {
+                toggleHotelsExpanded(false);
                 toggleFlightsExpanded(!flightsExanded);
               }}
               icon={<Icon name={'chevron-down'} type="material-community" />}
@@ -102,6 +103,7 @@ export default function ItineraryAccordion() {
               }
               isExpanded={hotelsExpanded}
               onPress={() => {
+                toggleFlightsExpanded(false);
                 toggleHotelsExpanded(!hotelsExpanded);
               }}
               icon={<Icon name={'chevron-down'} type="material-community" />}
