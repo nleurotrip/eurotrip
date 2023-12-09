@@ -69,9 +69,10 @@ export default function ItineraryAccordion() {
     const [ hotelsExpanded, toggleHotelsExpanded ] = useState(false);
   return (
     <View style={styles.container}>
-        <ListItem.Accordion bottomDivider
+        <ListItem.Accordion  bottomDivider
+            containerStyle={{backgroundColor: 'white'}}
             content={
-                <ListItem.Content>
+                <ListItem.Content >
                   <ListItem.Title style={{fontWeight: 'bold'}}>Flights</ListItem.Title>
                 </ListItem.Content>
               }
@@ -83,7 +84,7 @@ export default function ItineraryAccordion() {
               icon={<Icon name={'chevron-down'} type="material-community" />}
         >
             {flightList.map((l, i) => (
-                <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider>
+                <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider containerStyle={{backgroundColor: 'white'}}>
                     <Icon name="airplane-ticket" type="ion-icons" color="grey" />
                 <ListItem.Content>
                     <ListItem.Title>{l.from} to {l.to}</ListItem.Title>
@@ -94,6 +95,7 @@ export default function ItineraryAccordion() {
             ))}
         </ListItem.Accordion>
         <ListItem.Accordion bottomDivider
+            containerStyle={{backgroundColor: 'white'}}
             content={
                 <ListItem.Content>
                   <ListItem.Title style={{fontWeight: 'bold'}}>Hotels</ListItem.Title>
@@ -107,7 +109,7 @@ export default function ItineraryAccordion() {
               icon={<Icon name={'chevron-down'} type="material-community" />}
         >
             {hotelList.map((l, i) => (
-                <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider>
+                <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider containerStyle={{backgroundColor: 'white'}}>
                 <Icon name="hotel" type="material" color="grey" />
                 <ListItem.Content>
                     <ListItem.Title>{l.city}, {l.country}</ListItem.Title>
