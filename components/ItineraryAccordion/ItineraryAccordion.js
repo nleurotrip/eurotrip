@@ -1,4 +1,4 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { ListItem, Icon } from '@rneui/themed'
 
@@ -68,7 +68,7 @@ export default function ItineraryAccordion() {
     const [ flightsExanded, toggleFlightsExpanded ] = useState(false);
     const [ hotelsExpanded, toggleHotelsExpanded ] = useState(false);
   return (
-    <View style={{marginVertical: 10, borderWidth: 1, borderColor: 'lightgrey'}}>
+    <View style={styles.container}>
         <ListItem.Accordion bottomDivider
             content={
                 <ListItem.Content>
@@ -122,3 +122,14 @@ export default function ItineraryAccordion() {
     </View>
   )
 };
+
+const styles = StyleSheet.create({
+    container: {
+        width: '95%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginVertical: 10, 
+        borderWidth: 1, 
+        borderColor: 'lightgrey'
+    }
+})

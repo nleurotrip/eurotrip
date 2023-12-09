@@ -1,19 +1,22 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import CalendarSquare from './CalendarSquare';
 import calendarData from './itineraryData';
 const { weekOne, weekTwo, weekThree } = calendarData;
 export default function Calendar() {
   return (
-    <View style={styles.calendarContainer}>
-      <View style={styles.rowContainer}>
-        { weekOne.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
-      </View>
-      <View style={styles.rowContainer}>
-        { weekTwo.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
-      </View>
-      <View style={styles.rowContainer}>
-        { weekThree.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+    <View style={styles.container}>
+      <Text style={{marginLeft: 'auto', marginRight: 'auto', marginVertical: 5}}>December</Text>
+      <View style={styles.calendarContainer}>
+        <View style={styles.rowContainer}>
+          { weekOne.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+        </View>
+        <View style={styles.rowContainer}>
+          { weekTwo.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+        </View>
+        <View style={styles.rowContainer}>
+          { weekThree.map( d => <CalendarSquare key={d.date} day={d.day} date={d.date} active={d.active} location={d.location} icon={d.icon} /> ) }
+        </View>
       </View>
     </View>
   )
@@ -23,19 +26,19 @@ export default function Calendar() {
 
 styles = StyleSheet.create({
     container: {
-        width: '100%',
-        minHeight: 50,
-        marginVertical: 10,
+      width: '95%',
+      marginLeft:'auto',
+      marginRight: 'auto',
+      // borderWidth: 1,
+      // borderColor: 'lightgrey',
+      // borderRadius: 5,
+      backgroundColor: 'white',
     },
     calendarContainer: {
-        width: '95%',
-        borderWidth: 1,
-        borderColor: 'black',
-        backgroundColor: 'white',
-        borderRadius: 5,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        padding: 5
+      width: '100%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      padding: 5
     },
     rowContainer: {
       flexDirection: 'row',
