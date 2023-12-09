@@ -35,11 +35,11 @@ const flightList = [
 export default function ItineraryAccordion() {
     const [ flightsExanded, toggleFlightsExpanded ] = useState(false);
   return (
-    <View>
-        <ListItem.Accordion
+    <View style={{marginVertical: 10, borderWidth: 1, borderColor: 'lightgrey'}}>
+        <ListItem.Accordion bottomDivider
             content={
                 <ListItem.Content>
-                  <ListItem.Title>Flights</ListItem.Title>
+                  <ListItem.Title style={{fontWeight: 'bold'}}>Flights</ListItem.Title>
                   <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
                 </ListItem.Content>
               }
