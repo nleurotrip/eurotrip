@@ -32,7 +32,7 @@ styles = StyleSheet.create({
       marginVertical: 10,
       // borderWidth: 1,
       // borderColor: 'lightgrey',
-      // borderRadius: 5,
+      borderRadius: 5,
       backgroundColor: 'white',
       shadowColor: '#171717',
       shadowOffset: {width: -2, height: 4},
