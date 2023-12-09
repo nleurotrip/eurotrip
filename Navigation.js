@@ -6,6 +6,7 @@ import { Icon } from '@rneui/themed';
 
 import TempPage from './pages/Temp';
 import ItineraryPage from './pages/ItineraryPage';
+import MapPage from './pages/MapPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ const Navigation = () => {
             }
         }}
       />
-       <Tab.Screen name="Points of Interest" component={TempPage} />
+       <Tab.Screen name="Points of Interest" component={MapPage} />
       </Tab.Navigator>
     </NavigationContainer>
   )
