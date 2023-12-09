@@ -73,7 +73,6 @@ export default function ItineraryAccordion() {
             content={
                 <ListItem.Content>
                   <ListItem.Title style={{fontWeight: 'bold'}}>Flights</ListItem.Title>
-                  <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
                 </ListItem.Content>
               }
               isExpanded={flightsExanded}
@@ -98,7 +97,6 @@ export default function ItineraryAccordion() {
             content={
                 <ListItem.Content>
                   <ListItem.Title style={{fontWeight: 'bold'}}>Hotels</ListItem.Title>
-                  <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
                 </ListItem.Content>
               }
               isExpanded={hotelsExpanded}
