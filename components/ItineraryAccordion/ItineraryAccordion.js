@@ -32,8 +32,41 @@ const flightList = [
         date: '1/1/24'
     }
 ]
+const hotelList = [
+    {
+        city: 'Berlin',
+        country: 'Germany',
+        address: '123 idk st.',
+        zipcode: '12345',
+        phoneNumber: '+123 456 7890 1234',
+        url: 'www.example.com',
+        checkInDate: '12/22/23',
+        checkOutDate: '12/25/23'
+    },
+    {
+        city: 'Amsterdam',
+        country: 'Netherlands',
+        address: '123 idk st.',
+        zipcode: '12345',
+        phoneNumber: '+123 456 7890 1234',
+        url: 'www.example.com',
+        checkInDate: '12/25/23',
+        checkOutDate: '12/28/23'
+    },
+    {
+        city: 'London',
+        country: 'England',
+        address: '123 idk st.',
+        zipcode: '12345',
+        phoneNumber: '+123 456 7890 1234',
+        url: 'www.example.com',
+        checkInDate: '12/28/23',
+        checkOutDate:'1/1/24'
+    },
+]
 export default function ItineraryAccordion() {
     const [ flightsExanded, toggleFlightsExpanded ] = useState(false);
+    const [ hotelsExpanded, toggleHotelsExpanded ] = useState(false);
   return (
     <View style={{marginVertical: 10, borderWidth: 1, borderColor: 'lightgrey'}}>
         <ListItem.Accordion bottomDivider
@@ -54,6 +87,29 @@ export default function ItineraryAccordion() {
                 <ListItem.Content>
                     <ListItem.Title>{l.from} to {l.to}</ListItem.Title>
                     <ListItem.Subtitle>{l.date}</ListItem.Subtitle>
+                </ListItem.Content>
+                <ListItem.Chevron />
+                </ListItem>
+            ))}
+        </ListItem.Accordion>
+        <ListItem.Accordion bottomDivider
+            content={
+                <ListItem.Content>
+                  <ListItem.Title style={{fontWeight: 'bold'}}>Hotels</ListItem.Title>
+                  <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
+                </ListItem.Content>
+              }
+              isExpanded={hotelsExpanded}
+              onPress={() => {
+                toggleHotelsExpanded(!hotelsExpanded);
+              }}
+              icon={<Icon name={'chevron-down'} type="material-community" />}
+        >
+            {hotelList.map((l, i) => (
+                <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider>
+                <ListItem.Content>
+                    <ListItem.Title>{l.city}, {l.country}</ListItem.Title>
+                    <ListItem.Subtitle>{l.checkInDate} - {l.checkOutDate}</ListItem.Subtitle>
                 </ListItem.Content>
                 <ListItem.Chevron />
                 </ListItem>
