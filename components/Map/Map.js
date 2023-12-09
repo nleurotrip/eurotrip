@@ -3,12 +3,10 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import MapView from 'react-native-maps';
 
 export default function Map() {
-    let {height, width} = Dimensions.get('window')
     
     const styles = StyleSheet.create({
         container: {
-            height: height,
-            width: width,
+            flex:1 
         },
         map: {
         ...StyleSheet.absoluteFillObject,
