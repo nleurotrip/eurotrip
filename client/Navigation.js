@@ -31,6 +31,22 @@ const Navigation = () => {
         }}
       />
        <Tab.Screen name="Points of Interest" component={MapPage} />
+       <Tab.Screen 
+        name="Assistant" 
+        component={TempPage} 
+        options={{
+          tabBarIcon: ({size,focused,color}) => {
+              return (
+                <Icon
+                  name="account"
+                  style={{ width: size, height: size }}
+                  type="material-community"
+                  color="lightblue"
+                />
+              );
+            }
+        }}
+      />
       </Tab.Navigator>
     </NavigationContainer>
   )
