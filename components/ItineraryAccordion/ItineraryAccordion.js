@@ -84,6 +84,7 @@ export default function ItineraryAccordion() {
         >
             {flightList.map((l, i) => (
                 <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider>
+                    <Icon name="airplane-ticket" type="ion-icons" color="grey" />
                 <ListItem.Content>
                     <ListItem.Title>{l.from} to {l.to}</ListItem.Title>
                     <ListItem.Subtitle>{l.date}</ListItem.Subtitle>
@@ -107,6 +108,7 @@ export default function ItineraryAccordion() {
         >
             {hotelList.map((l, i) => (
                 <ListItem key={i} onPress={() => {Alert.alert('pressed')}} bottomDivider>
+                <Icon name="hotel" type="material" color="grey" />
                 <ListItem.Content>
                     <ListItem.Title>{l.city}, {l.country}</ListItem.Title>
                     <ListItem.Subtitle>{l.checkInDate} - {l.checkOutDate}</ListItem.Subtitle>
