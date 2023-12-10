@@ -7,6 +7,7 @@ import { Icon } from '@rneui/themed';
 import TempPage from './pages/Temp';
 import ItineraryPage from './pages/ItineraryPage';
 import MapPage from './pages/MapPage';
+import AssistantPage from './pages/AssistantPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const Navigation = () => {
                   name="list-alt"
                   style={{ width: size, height: size }}
                   type="material"
-                  color="lightblue"
+                  color={color}
                 />
               );
             }
@@ -33,7 +34,7 @@ const Navigation = () => {
        <Tab.Screen name="Points of Interest" component={MapPage} />
        <Tab.Screen 
         name="Assistant" 
-        component={TempPage} 
+        component={AssistantPage} 
         options={{
           tabBarIcon: ({size,focused,color}) => {
               return (
@@ -41,7 +42,7 @@ const Navigation = () => {
                   name="account"
                   style={{ width: size, height: size }}
                   type="material-community"
-                  color="lightblue"
+                  color={color}
                 />
               );
             }
