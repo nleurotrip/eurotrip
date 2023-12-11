@@ -14,6 +14,7 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
+import MessageBubble from '../components/MessageBubble/MessageBubble';
 
 const demoMessages = [
   {
@@ -51,7 +52,7 @@ const AssistantPage = () => {
         <View style={styles.inner}>
           <View style={styles.messageContainer}> 
 {/* replace with scrollview or flatlist */}
-            {messages.map(m => <Text>{m.content}</Text>)}
+            {messages.map(m => <MessageBubble content={m.content} role={m.role} />)}
           </View>
           <Input 
             placeholder="Enter a prompt" 
@@ -68,21 +69,16 @@ const AssistantPage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderWidth: 1
+    flex: 1
   },
   inner: {
     flex: 1,
     justifyContent: 'space-around',
-    borderWidth: 1,
-    borderColor: 'red'
   },
   messageContainer: {
     flex: 1,
-    borderColor: 'blue',
-    borderWidth: 1,
     padding: 5,
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'flex-start'
   },
