@@ -52,7 +52,7 @@ const AssistantPage = () => {
         <View style={styles.inner}>
           <View style={styles.messageContainer}> 
 {/* replace with scrollview or flatlist */}
-            {messages.map(m => <MessageBubble content={m.content} role={m.role} />)}
+            {messages.map( (m, i) => <MessageBubble key={i} content={m.content} role={m.role} />)}
           </View>
           <Input 
             placeholder="Enter a prompt" 
