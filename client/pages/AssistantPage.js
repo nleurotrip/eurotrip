@@ -47,7 +47,10 @@ const styles = StyleSheet.create({
   messageContainer: {
     flex: 1,
     borderColor: 'blue',
-    borderWidth: 1
+    borderWidth: 1,
+    padding: 5,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   },
   textInput: {
     height: 40,
