@@ -1,6 +1,6 @@
 
 import { Input } from '@rneui/themed';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHeaderHeight } from "@react-navigation/elements";
 import {
   View,
@@ -12,10 +12,31 @@ import {
   TouchableWithoutFeedback,
   Button,
   Keyboard,
+  ScrollView,
 } from 'react-native';
+
+const demoMessages = [
+  {
+    role: 'system',
+    content: 'How can I help?',
+    timestamp: '01012023'
+  },
+  {
+    role: 'user',
+    content: 'Where can I meet women?',
+    timestamp: '01012023'
+  },
+  {
+    role: 'system',
+    content: 'At the brothel.',
+    timestamp: '01012023'
+  },
+]
 
 const AssistantPage = () => {
   const headerHeight = useHeaderHeight();
+  const [ messages, setMessages ] = useState(demoMessages);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -23,8 +44,8 @@ const AssistantPage = () => {
       keyboardVerticalOffset={headerHeight}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.inner}>
-          <View style={styles.messageContainer}>
-
+          <View style={styles.messageContainer}> 
+{/* replace with scrollview or flatlist */}
           </View>
           <Input placeholder="Enter a prompt" />
         </View>
