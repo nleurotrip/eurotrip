@@ -1,40 +1,64 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
-import React from 'react'
-import useStyles from '../styles'
+
 import { Input } from '@rneui/themed';
+import React from 'react';
+import { useHeaderHeight } from "@react-navigation/elements";
+import {
+  View,
+  KeyboardAvoidingView,
+  TextInput,
+  StyleSheet,
+  Text,
+  Platform,
+  TouchableWithoutFeedback,
+  Button,
+  Keyboard,
+} from 'react-native';
 
-export default function AssistantPage() {
-  const sharedStyles = useStyles();
-
+const AssistantPage = () => {
+  const headerHeight = useHeaderHeight();
   return (
-    <SafeAreaView style={sharedStyles.rootContainer}>
-      <View style={styles.chatContainer}>
-        
-      </View>
-      <View style={styles.textEntryContainer}>
-        <Input placeholder="Enter a new prompt..." />
-      </View>
-    </SafeAreaView>
-  )
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      keyboardVerticalOffset={headerHeight}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inner}>
+          <View style={styles.messageContainer}>
+
+          </View>
+          <Input placeholder="Enter a prompt" />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  );
 };
 
 const styles = StyleSheet.create({
-  chatContainer: {
-    flex: 9,
-    width: '100%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    borderRadius: 5,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'lightgrey'
-  },
-  textEntryContainer: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    borderWidth: 1
+  },
+  inner: {
+    flex: 1,
+    justifyContent: 'space-around',
+    borderWidth: 1,
+    borderColor: 'red'
+  },
+  messageContainer: {
+    flex: 1,
+    borderColor: 'blue',
+    borderWidth: 1
+  },
+  textInput: {
+    height: 40,
+    borderColor: '#000000',
+    borderBottomWidth: 1,
+    marginBottom: 36,
+  },
+  btnContainer: {
     backgroundColor: 'white',
-  }
+    marginTop: 12,
+  },
 });
+
+export default AssistantPage;
