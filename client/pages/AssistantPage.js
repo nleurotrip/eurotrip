@@ -1,5 +1,5 @@
 
-import { Input } from '@rneui/themed';
+import { Icon, Input } from '@rneui/themed';
 import React, { useState } from 'react';
 import { useHeaderHeight } from "@react-navigation/elements";
 import {
@@ -35,7 +35,12 @@ const demoMessages = [
 
 const AssistantPage = () => {
   const headerHeight = useHeaderHeight();
+  const [ currentMessage, setCurrentMessage ] = useState("");
   const [ messages, setMessages ] = useState(demoMessages);
+  const handleSend = () => {
+    setMessages([...messages, {role: 'user', content: currentMessage, timestamp: new Date()}]);
+    setCurrentMessage('');
+  };
 
   return (
     <KeyboardAvoidingView
@@ -46,8 +51,15 @@ const AssistantPage = () => {
         <View style={styles.inner}>
           <View style={styles.messageContainer}> 
 {/* replace with scrollview or flatlist */}
+            {messages.map(m => <Text>{m.content}</Text>)}
           </View>
-          <Input placeholder="Enter a prompt" />
+          <Input 
+            placeholder="Enter a prompt" 
+            value={currentMessage}
+            onChangeText={val => setCurrentMessage(val)} 
+            rightIcon={<Icon type='material-community' name="send-circle-outline" onPress={handleSend}/>}
+            onSubmitEditing={handleSend}
+          />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -71,6 +83,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'flex-start'
   },
   textInput: {
