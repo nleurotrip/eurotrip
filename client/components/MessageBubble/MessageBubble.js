@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     messageLine: {
         width: '100%',
         minHeight: 15,
-        maxHeight: 200,
+        // maxHeight: 200,
         margin: 0,
         padding: 5,
     },
