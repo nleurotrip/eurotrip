@@ -14,6 +14,7 @@ import {
   Button,
   Keyboard,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import MessageBubble from '../components/MessageBubble/MessageBubble';
 
@@ -43,6 +44,7 @@ const AssistantPage = () => {
   useEffect(() => {
     let getMessages = async () => {
       let messageResp = await axios.get('http://localhost:3000/messages/list');
+      console.log('messages', messageResp.data );
       setMessages(messageResp.data);
     }
     getMessages();
@@ -62,7 +64,13 @@ const AssistantPage = () => {
         <View style={styles.inner}>
           <View style={styles.messageContainer}> 
 {/* replace with scrollview or flatlist */}
-            {messages.map( (m, i) => <MessageBubble key={i} content={m.content} role={m.role} />)}
+            {/* {messages.map( (m, i) => <MessageBubble key={i} content={m.content} role={m.role} />)} */}
+            {messages.length > 0 && <FlatList
+              data={messages}
+              renderItem={({item}) => <MessageBubble content={item.content} role={item.role} />}
+              keyExtractor={item => Math.random()}
+              style={{width: '100%'}}
+            />}
           </View>
           <Input 
             placeholder="Enter a prompt" 
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: 'column',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   textInput: {
     height: 40,
