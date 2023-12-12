@@ -1,6 +1,7 @@
 
 import { Icon, Input } from '@rneui/themed';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useHeaderHeight } from "@react-navigation/elements";
 import {
   View,
@@ -37,7 +38,16 @@ const demoMessages = [
 const AssistantPage = () => {
   const headerHeight = useHeaderHeight();
   const [ currentMessage, setCurrentMessage ] = useState("");
-  const [ messages, setMessages ] = useState(demoMessages);
+  const [ messages, setMessages ] = useState([]);
+
+  useEffect(() => {
+    let getMessages = async () => {
+      let messageResp = await axios.get('http://localhost:3000/messages/list');
+      setMessages(messageResp.data);
+    }
+    getMessages();
+  }, []);
+
   const handleSend = () => {
     setMessages([...messages, {role: 'user', content: currentMessage, timestamp: new Date()}]);
     setCurrentMessage('');
