@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const { listMessages } = require('./openAIAPI');
+const { listMessages, sendMessage } = require('./openAIAPI');
 
+app.use(express.json());
 app.get('/messages/list', async (req, res) => {
   //get all messages in the thread.
   let resp;
@@ -17,9 +18,17 @@ app.get('/messages/list', async (req, res) => {
 })
 
 
-app.post('/messages/send', (req, res) => {
-  //send
-  res.send('Hello World!')
+app.post('/messages/send', async (req, res) => {
+  let resp;
+  let content = req.body.content;
+  console.log(content);
+  try {
+    resp = await sendMessage(content);
+    console.log('RESP', resp);
+  } catch (e) {
+    throw new Error('Error sending message');
+  };
+  res.send(resp);
 })
 
 app.listen(port, () => {
