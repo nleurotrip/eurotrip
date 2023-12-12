@@ -4,7 +4,7 @@ const OpenAI = require("openai");
 
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
-async function listMessages(limit=100, order='asc') {
+async function listMessages(limit=100, order='desc') {
 
     const threadMessages = await openai.beta.threads.messages.list(process.env.THREAD_ID, {limit: limit, order: order});
     // console.log(threadMessages.data[0]);
@@ -42,7 +42,7 @@ async function runAssistant() {
             console.log('RUN STATUS', status);
         }, 1000);
     }
-    let messages = await listMessages(2, 'desc');
+    let messages = await listMessages(2, 'asc');
     return messages;
 
 };
