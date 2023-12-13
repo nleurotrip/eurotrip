@@ -57,7 +57,7 @@ async function pollEndpoint(runId) {
             }
 
             // If the status is not completed, wait for 1 second before the next attempt
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 1500));
         } catch (error) {
             console.error('Error:', error.message);
             // Handle the error as needed
