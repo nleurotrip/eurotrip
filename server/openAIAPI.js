@@ -4,7 +4,7 @@ const OpenAI = require("openai");
 
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
-async function listMessages(limit=100, order='desc') {
+async function listMessages(limit=10, order='desc') {
     try {
         const threadMessages = await openai.beta.threads.messages.list(process.env.THREAD_ID, {limit: limit, order: order});
         // console.log(threadMessages.data[0]);
