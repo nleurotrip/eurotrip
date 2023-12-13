@@ -34,34 +34,6 @@ async function runAssistant() {
     return runId;
 };
 
-const sendAndRun = async (content) => {
-    console.log('incoming content', content)
-    return openai.beta.threads.messages.create(
-        process.env.THREAD_ID,
-        {
-            role: 'user',
-            content: content
-        }
-    ).then(() => {
-        //create run
-        console.log('creating run');
-        return openai.beta.threads.runs.create(
-            process.env.THREAD_ID,
-            { assistant_id: process.env.ASSISTANT_ID }
-        );
-    }).then(async runResult => {
-        //poll it the initial time
-        let runId = runResult.id;
-        let runResp = await openai.beta.threads.runs.retrieve(
-            process.env.THREAD_ID,
-            runId
-        );
-        let status = runResp.status;
-        console.log('intial polling status', status);
-        return {runId, status};
-    })
-    .then(() => listMessages(2, 'desc'));
-}
 
 
 
@@ -93,10 +65,6 @@ async function pollEndpoint(runId) {
         }
     }
 }
-
-// sendMessage("what bars are cool in shoreditch?")
-//     .then(() => runAssistant() )
-//     .then( runId => pollEndpoint(runId));
 
 
 module.exports.listMessages = listMessages;
