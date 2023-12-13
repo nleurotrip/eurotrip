@@ -25,7 +25,6 @@ app.post('/messages/send', async (req, res) => {
     .then(() => runAssistant())
     .then((runId) => pollEndpoint(runId))
     .then(messageAndResponse => {
-      console.log('should be received: ', messageAndResponse[0]);
       res.send({sent: messageAndResponse[1], received: messageAndResponse[0]});
     })
     .catch(e => {

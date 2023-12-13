@@ -5,33 +5,43 @@ const OpenAI = require("openai");
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 async function listMessages(limit=100, order='desc') {
+    try {
+        const threadMessages = await openai.beta.threads.messages.list(process.env.THREAD_ID, {limit: limit, order: order});
+        // console.log(threadMessages.data[0]);
+        const messageData = threadMessages.data.map(m => ({role: m.role, content: m.content[0].text.value, createdAt: m.created_at}) );
+        return messageData;
+    } catch (e) {
+        throw new Error(e.message);
+    }
+};  
 
-    const threadMessages = await openai.beta.threads.messages.list(process.env.THREAD_ID, {limit: limit, order: order});
-    // console.log(threadMessages.data[0]);
-    const messageData = threadMessages.data.map(m => ({role: m.role, content: m.content[0].text.value, createdAt: m.created_at}) );
-    console.log(messageData);
-    return messageData;
-};
 
 async function sendMessage(content) {
-    const newMessage = await openai.beta.threads.messages.create(
-        process.env.THREAD_ID,
-        {
-            role: 'user',
-            content: content
-        }
-    );
-    console.log('sent message: ', newMessage);
-    return newMessage;
+    try {
+        const newMessage = await openai.beta.threads.messages.create(
+            process.env.THREAD_ID,
+            {
+                role: 'user',
+                content: content
+            }
+        );
+        return newMessage;
+    } catch (e) {
+        throw new Error(e.message);
+    }
 };
 
 async function runAssistant() {
-    const runResult = await openai.beta.threads.runs.create(
-        process.env.THREAD_ID,
-        { assistant_id: process.env.ASSISTANT_ID }
-    );
-    const runId = runResult.id;
-    return runId;
+    try {
+        const runResult = await openai.beta.threads.runs.create(
+            process.env.THREAD_ID,
+            { assistant_id: process.env.ASSISTANT_ID }
+        );
+        const runId = runResult.id;
+        return runId;
+    } catch (e) {
+        throw new Error(e.message);
+    }
 };
 
 
@@ -39,7 +49,6 @@ async function runAssistant() {
 
 async function pollEndpoint(runId) {
     while (true) {
-        console.log('polling for response');
         try {
             // Make a request to the endpoint
             const response = await openai.beta.threads.runs.retrieve(
@@ -49,9 +58,7 @@ async function pollEndpoint(runId) {
             let messageAndResponse;
             // Check if the status is completed
             if (response.status === 'completed') {
-                console.log('Status is completed!');
                 messageAndResponse = await listMessages(2, 'desc');
-                console.log('Message and response: ', messageAndResponse);
                 return messageAndResponse;
                 
             }
@@ -60,11 +67,10 @@ async function pollEndpoint(runId) {
             await new Promise(resolve => setTimeout(resolve, 1500));
         } catch (error) {
             console.error('Error:', error.message);
-            // Handle the error as needed
-            break; // Exit the loop on error, you may choose to retry or handle differently
+            throw new Error(error.message);
         }
     }
-}
+};
 
 
 module.exports.listMessages = listMessages;
