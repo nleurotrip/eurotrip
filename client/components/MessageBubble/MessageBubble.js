@@ -3,7 +3,6 @@ import React from 'react'
 import { Chip } from '@rneui/themed';
 
 export default function MessageBubble({content, role}) {
-  console.log('CONTENT', content);
   return (
     <View style={styles.messageLine}>
       <Chip 

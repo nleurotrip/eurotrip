@@ -15,26 +15,10 @@ import {
   Keyboard,
   ScrollView,
   FlatList,
+  Alert
 } from 'react-native';
 import MessageBubble from '../components/MessageBubble/MessageBubble';
 
-const demoMessages = [
-  {
-    role: 'system',
-    content: 'How can I help?',
-    timestamp: '01012023'
-  },
-  {
-    role: 'user',
-    content: 'Where can I meet women?',
-    timestamp: '01012023'
-  },
-  {
-    role: 'system',
-    content: 'At the brothel.',
-    timestamp: '01012023'
-  },
-]
 
 const AssistantPage = () => {
   const headerHeight = useHeaderHeight();
@@ -46,7 +30,8 @@ const AssistantPage = () => {
       let messageResp = await axios.get('http://localhost:3000/messages/list');
       setMessages(messageResp.data);
     }
-    getMessages();
+    getMessages()
+    .catch(e => {Alert.alert("Cannot connect to server ):")});
   }, []);
 
   const handleSend = () => {
