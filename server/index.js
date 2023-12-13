@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const { listMessages, sendMessage, runAssistant } = require('./openAIAPI');
+const { listMessages, sendMessage, runAssistant, pollEndpoint } = require('./openAIAPI');
 
 app.use(express.json());
 app.get('/messages/list', async (req, res) => {
@@ -21,19 +21,16 @@ app.get('/messages/list', async (req, res) => {
 app.post('/messages/send', async (req, res) => {
   let content = req.body.content;
   console.log(content);
-  try {
-    const sendResp = await sendMessage(content);
-    console.log('RESP', sendResp);
-  } catch (e) {
-    throw new Error('Error sending message');
-  };
-
-  try {
-    let runResp = await runAssistant();
-    res.send(runResp);
-  } catch (e) {
-    throw new Error('Error running Assistant');
-  }
+  sendMessage(content)
+    .then(() => runAssistant())
+    .then((runId) => pollEndpoint(runId))
+    .then(messageAndResponse => {
+      console.log('should be received: ', messageAndResponse[0]);
+      res.send({sent: messageAndResponse[1], received: messageAndResponse[0]});
+    })
+    .catch(e => {
+      res.send(e.message);
+    });
 });
 
 
