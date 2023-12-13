@@ -1,10 +1,13 @@
 const express = require('express')
+const apicache = require('apicache');
 const app = express()
 const port = 3000
 const { listMessages, sendMessage, runAssistant, pollEndpoint } = require('./openAIAPI');
 
+let cache = apicache.middleware;
+
 app.use(express.json());
-app.get('/messages/list', async (req, res) => {
+app.get('/messages/list', cache('30 seconds'), async (req, res) => {
   //get all messages in the thread.
   let resp;
   try {
