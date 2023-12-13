@@ -6,7 +6,7 @@ export default function MessageBubble({content, role}) {
   return (
     <View style={styles.messageLine}>
       <Chip 
-        title={content} 
+        title={role==='loading' ? '...' : content} 
         buttonStyle={role === 'user' ? styles.userChip : styles.systemChip} 
         titleStyle={role==='user' ? {color: 'white'} : {color: 'black'}}
       />

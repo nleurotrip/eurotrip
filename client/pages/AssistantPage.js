@@ -24,6 +24,7 @@ const AssistantPage = () => {
   const headerHeight = useHeaderHeight();
   const [ currentMessage, setCurrentMessage ] = useState("");
   const [ messages, setMessages ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
     let getMessages = async () => {
@@ -34,9 +35,47 @@ const AssistantPage = () => {
     .catch(e => {Alert.alert("Cannot connect to server ):")});
   }, []);
 
+  useEffect(() => {
+    console.log('loading: ', loading);
+    if(loading) {
+      //add loading bubble
+      setMessages(prevMessages => [{role: 'loading', content: ''}, ...prevMessages]);
+    } else {
+      //remove loading bubble
+      let messagesCopy = JSON.parse(JSON.stringify(messages));
+      let newMessages = messagesCopy.filter(m => m.role!=='loading')
+      setMessages(prevMessages => prevMessages.filter(m => m.role!=='loading'));
+      return;
+    }
+  }, [loading])
+
   const handleSend = () => {
-    setMessages([...messages, {role: 'user', content: currentMessage, timestamp: new Date()}]);
-    setCurrentMessage('');
+    return new Promise(res => {
+      setMessages([{role: 'user', content: currentMessage, createdAt: new Date().toTimeString()}, ...messages]);
+      res();
+    })
+      .then(() => {
+        setLoading(true);
+        return;
+      })
+      .then(() => {
+        setCurrentMessage('');
+        return;
+      })
+      .then(() => {
+        return axios.post('http://localhost:3000/messages/send', {
+          content: currentMessage
+        })
+      })
+      .then(resp => {
+        setMessages(prevMessages => [resp.data.received, ...prevMessages]);
+        return;
+      })
+      .then(() => {
+        setLoading(false);
+        return;
+      })
+      .catch(e => Alert.alert(e.message));
   };
 
   return (
